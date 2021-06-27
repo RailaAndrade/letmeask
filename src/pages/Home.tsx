@@ -1,6 +1,7 @@
-
 import { useHistory } from 'react-router-dom';
 import { Button } from '../components/Button';
+import{ThemeButton} from '../components/ThemeButton'
+
 import ilustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg'
@@ -8,9 +9,11 @@ import '../styles/auth.scss'
 import { useAuth } from '../hooks/useAuth';
 import { FormEvent, useState } from 'react';
 import { database } from '../services/firebase';
+import { useTheme } from '../hooks/useTheme';
 
 export function Home(){
     const history = useHistory();
+    const {theme, toggleTheme}= useTheme();
     const {signInWithGoogle, user} = useAuth();
     const [roomCode,setRoomCode] =useState('')
 
@@ -42,19 +45,24 @@ export function Home(){
             return;
 
         }
-        history.push(`/roms/${roomCode}`)
+        history.push(`admin/roms/${roomCode}`)
 
 
     }
     return(
-        <div id ="page-auth">
+        <div className ={theme} id ="page-auth">
+              
+            
             <aside>
                 <img src={ilustrationImg} alt="Ilustração simbolizando perguntas e respostas " ></img>
                 <strong>Crie salas de Q&amp;A ao vivo</strong>
                 <p>Tire as dúvidas da sua audiência em tempo real</p>
             </aside>
             <main>
+            <ThemeButton toggleTheme={toggleTheme}/>
                 <div className="main-content">
+                  
+
                     <img src={logoImg} alt="letmeask"></img>
                     <button onClick={handleCreateRoom}className="create-room">
                         <img src={googleIconImg} alt="logo do google"></img>
