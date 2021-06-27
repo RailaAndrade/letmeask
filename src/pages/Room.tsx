@@ -1,12 +1,14 @@
-import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { FormEvent, useState,useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
+import { ThemeButton } from "../components/ThemeButton";
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
+import { useTheme } from '../hooks/useTheme';
 import '../styles/room.scss'
 
 type RoomParams = {
@@ -14,14 +16,26 @@ type RoomParams = {
 }
 
 
+
 export function Room (){
+
+
     const {user} = useAuth();
-    
+    const history = useHistory();
+    const {theme, toggleTheme}= useTheme();
+
+
     const params = useParams<RoomParams> ();
     const roomId = params.id; 
     const [newQuestion, setNewquestion] = useState('');
     const {title,questions}= useRoom(roomId)
 
+    useEffect(()=>{
+        if(!user){
+            history.push('/')
+        }
+    
+    },[user,history])
 
     async function handleSendQuestion(event:FormEvent){
         event.preventDefault()
@@ -69,17 +83,21 @@ export function Room (){
 
     }
     return (
-      <div id="page-room">
+      <div className ={theme} id="page-room">
           <header>
               <div className="content">
                 <img src= {logoImg} alt="letmeask"></img>
-                <RoomCode code={roomId}/>
+                <div>
+                    <RoomCode code={roomId}/>
+                    <ThemeButton toggleTheme={toggleTheme}/>
+                </div>
               </div>
           </header>
           <main className="content">
+         
                 <div className="room-title">
                     <h1>Sala {title} </h1>
-                    {questions.length>0 &&<span>{questions.length}</span>}
+                    {questions.length>0 &&<span>{questions.length} perguntas</span>}
 
                 </div>
                 <form onSubmit={handleSendQuestion}>

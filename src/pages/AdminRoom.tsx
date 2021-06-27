@@ -5,11 +5,13 @@ import checkImg from '../assets/images/check.svg'
 import answerImg from '../assets/images/answer.svg'
 import deleteImg from '../assets/images/delete.svg';
 import { Button } from '../components/Button';
+import { ThemeButton } from '../components/ThemeButton';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 import { database } from '../services/firebase';
+import { useTheme } from '../hooks/useTheme';
 import '../styles/room.scss'
 
 
@@ -30,18 +32,20 @@ export function AdminRoom (){
     const roomId = params.id; 
     const [newQuestion, setNewquestion] = useState('');
     const {title,questions}= useRoom(roomId)
+    const {theme, toggleTheme}= useTheme();
 
 
 
+    
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date(),
+    })
 
-    async function handleEndRoom(){
-        await database.ref(`rooms/${roomId}`).update({
-            endedAt: new Date(),
-        })
+    history.push('/');
+  }
 
-        history.push('/')
-
-    }
+    
     async function handleDeleteQuestion(questionId:string){
        if(window.confirm('Tem certeza que você deseja excluir esta pergunta?')){
              await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
@@ -84,15 +88,17 @@ export function AdminRoom (){
     
     }
     return (
-      <div id="page-room">
+      <div className ={theme} id="page-room">
           <header>
               <div className="content">
                 <img src= {logoImg} alt="letmeask"></img>
                 <div>
                     <RoomCode code={roomId}/>
                     <Button onClick={handleEndRoom} isOutlined> Encerrar sala</Button>
-                </div>
+                    <ThemeButton toggleTheme={toggleTheme}/>
                 
+                </div>
+               
 
               </div>
           </header>
@@ -104,7 +110,7 @@ export function AdminRoom (){
                 </div>
                
 
-                <div className="question-list">
+                <div className={`question-list ${theme}`}>
                     {questions.map(question=>{
                         return(
                             <Question

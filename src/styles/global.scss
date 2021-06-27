@@ -4,10 +4,29 @@
     box-sizing: border-box;
 
 }
+.dark{
+    background-color:#202123;
+    height: 100vh;
+    h1{
+        color:white!important;
+    }
+
+    .room-code span{
+      color: black!important;
+    }
+
+    .user-info span{
+        color: black!important;
+      }
+    span{
+        color:white!important;
+    }
+}
 
 body{
     background:#f8f8f8;
     color:#29292e;
+  
 }
 
 body, input ,button, textarea {
@@ -15,7 +34,4 @@ body, input ,button, textarea {
 
 }
 
-.dark{
-    background-color:#202123;
-}
 

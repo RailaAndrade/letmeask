@@ -2,15 +2,18 @@
 import {FormEvent, useState} from 'react'
 import { Link, useHistory } from "react-router-dom"; 
 import { Button } from "../components/Button";
+import { ThemeButton } from "../components/ThemeButton";
 import ilustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg';
 import '../styles/auth.scss'
 import { database } from '../services/firebase';
+import { useTheme } from '../hooks/useTheme';
 
 import { useAuth } from "../hooks/useAuth";
 export function NewRoom() {
     const {user}= useAuth();
     const history = useHistory();
+    const {theme, toggleTheme}= useTheme();
 
     const [newRoom,setNewRoom]= useState('');
 
@@ -31,13 +34,14 @@ export function NewRoom() {
     }
     return (
 
-        <div id ="page-auth">
+        <div className ={theme} id ="page-auth">
         <aside>
             <img src={ilustrationImg} alt="Ilustração simbolizando perguntas e respostas " ></img>
             <strong>Crie salas de Q&amp;A ao vivo</strong>
             <p>Tire as dúvidas da sua audiência em tempo real</p>
         </aside>
         <main>
+        <ThemeButton toggleTheme={toggleTheme}/>
             <div className="main-content">
                 <img src={logoImg} alt="letmeask"></img>
             
