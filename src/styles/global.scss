@@ -4,6 +4,20 @@
     box-sizing: border-box;
 
 }
+
+
+body{
+    background:#f8f8f8;
+    color:#29292e;
+  
+}
+
+
+body, input ,button, textarea {
+    font:400 16px 'Roboto',sans-serif
+
+}
+
 .dark{
     background-color:#202123;
     height: 100vh;
@@ -22,15 +36,3 @@
         color:white!important;
     }
 }
-
-body{
-    background:#f8f8f8;
-    color:#29292e;
-  
-}
-
-body, input ,button, textarea {
-    font:400 16px 'Roboto',sans-serif
-
-}
-

@@ -23,8 +23,6 @@ export function Room (){
     const {user} = useAuth();
     const history = useHistory();
     const {theme, toggleTheme}= useTheme();
-
-
     const params = useParams<RoomParams> ();
     const roomId = params.id; 
     const [newQuestion, setNewquestion] = useState('');
@@ -57,13 +55,6 @@ export function Room (){
         await database.ref(`rooms/${roomId}/questions`).push(question);
 
         setNewquestion('');
-
-        
-         
-    
-    
-    
-    
     
     
     }
@@ -75,7 +66,7 @@ export function Room (){
             await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove()
         }else{
 
-            const newlike = await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
+            await database.ref(`rooms/${roomId}/questions/${questionId}/likes`).push({
                 authorId:user?.id,
             }) 
 

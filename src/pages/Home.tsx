@@ -50,7 +50,7 @@ export function Home(){
 
     }
     return(
-        <div className ={theme} id ="page-auth">
+        <div id ="page-auth" className ={theme}>
               
             
             <aside>
@@ -58,11 +58,15 @@ export function Home(){
                 <strong>Crie salas de Q&amp;A ao vivo</strong>
                 <p>Tire as dúvidas da sua audiência em tempo real</p>
             </aside>
+
+         
             <main>
-             
-               
-                <div className="main-content">
+                <div className="theme-home">
+                    <ThemeButton toggleTheme={toggleTheme}/>
+                </div>
               
+                <div className="main-content">
+                
             
 
                     <img src={logoImg} alt="letmeask"></img>
@@ -82,6 +86,8 @@ export function Home(){
                     </form>
                 </div>
             </main>
+
+         
         </div>
     )
 

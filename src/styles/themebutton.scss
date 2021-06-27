@@ -8,6 +8,14 @@
     background-color: hsl(0, 0%, 80%);
     -webkit-transition: .4s;
     transition: .4s;
+
+    @media (max-width: 768px)
+    {   
+        width:70px;
+        height:30px;
+     
+    
+    }
 }
 .slider:before {
     display: flex;
@@ -15,10 +23,18 @@
     height: 100%;
     width: 55%;
     //margin:4px;
-
+    
     background-color:#fff;
     -webkit-transition: .4s;
     transition: .4s;
+
+    @media (max-width: 768px)
+    {   
+        width:24px;
+        height:24px;
+     
+    
+    }
 }
 .switch{
     input{
