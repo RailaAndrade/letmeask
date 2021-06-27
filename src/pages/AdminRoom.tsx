@@ -30,7 +30,7 @@ export function AdminRoom (){
     const history = useHistory();
     const params = useParams<RoomParams> ();
     const roomId = params.id; 
-    const [newQuestion, setNewquestion] = useState('');
+    
     const {title,questions}= useRoom(roomId)
     const {theme, toggleTheme}= useTheme();
 
@@ -65,28 +65,7 @@ export function AdminRoom (){
             isHighlighted:true
         })
     }
-    async function handleSendQuestion(event:FormEvent){
-        event.preventDefault()
-        if ( newQuestion.trim()===''){
-            return;
-        }
-        if(!user){
-             throw new Error('you must be logged in')
-        }
-        const question ={
-            content: newQuestion, 
-            author:{
-                name: user.name, 
-                avatar:user.avatar
-            },
-            isHilighted:false,
-            isAnswered:false
-        };
-        await database.ref(`rooms/${roomId}/questions`).push(question);
-
-        setNewquestion('');
-    
-    }
+ 
     return (
       <div className ={theme} id="page-room">
           <header>

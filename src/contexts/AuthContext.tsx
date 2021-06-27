@@ -67,11 +67,11 @@ type User = {
       }
       
     }
-
+    /*
     if(loading){
       return  (<p>carregando...</p>);
     }
-   
+   */
     return (
         <AuthContext.Provider value={{user, signInWithGoogle}} >
             {props.children}

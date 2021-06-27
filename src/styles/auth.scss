@@ -1,9 +1,12 @@
 #page-auth{
+
     display:flex;
+    flex-wrap: wrap;
     align-items: stretch;
     height:100vh;
     aside{
-        flex:7;
+
+        //flex:7;
         background:#835afd;
         color:#fff;
         display: flex;
@@ -27,6 +30,13 @@
 
 
         }
+
+        @media (max-width: 768px)
+        {
+            width:100%;
+           
+        }
+
     }
     main{
         flex:8;
@@ -34,6 +44,26 @@
         display: flex;
         align-items: center;
         justify-content:center;
+
+
+        .theme-home{
+            position: absolute;
+            top:4%;
+            right:8%;
+           
+        }
+
+
+        @media (max-width: 768px)
+        {   margin-top: 30%;
+            
+            .theme-home{
+         
+                right:30%;
+               
+            }
+        }
+
     }
 
     .main-content{
@@ -79,6 +109,11 @@
 
         }
 
+        @media (max-width: 768px){
+            width:100%;
+            margin-bottom: 20%;
+
+        }
 
     }
     .create-room{

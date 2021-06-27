@@ -34,15 +34,18 @@ export function NewRoom() {
     }
     return (
 
-        <div className ={theme} id ="page-auth">
+        <div className={theme} id ="page-auth">
         <aside>
             <img src={ilustrationImg} alt="Ilustração simbolizando perguntas e respostas " ></img>
             <strong>Crie salas de Q&amp;A ao vivo</strong>
             <p>Tire as dúvidas da sua audiência em tempo real</p>
         </aside>
         <main>
-        <ThemeButton toggleTheme={toggleTheme}/>
-            <div className="main-content">
+
+                <div className="theme-home">
+                        <ThemeButton toggleTheme={toggleTheme}/>
+                    </div>
+                <div className="main-content">
                 <img src={logoImg} alt="letmeask"></img>
             
                 <h2> Criar uma nova sala</h2>

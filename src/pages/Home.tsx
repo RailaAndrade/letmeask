@@ -59,9 +59,11 @@ export function Home(){
                 <p>Tire as dúvidas da sua audiência em tempo real</p>
             </aside>
             <main>
-            <ThemeButton toggleTheme={toggleTheme}/>
+             
+               
                 <div className="main-content">
-                  
+              
+            
 
                     <img src={logoImg} alt="letmeask"></img>
                     <button onClick={handleCreateRoom}className="create-room">
